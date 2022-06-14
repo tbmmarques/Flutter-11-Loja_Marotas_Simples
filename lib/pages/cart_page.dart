@@ -36,7 +36,7 @@ class CartPage extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   Chip(
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                     label: Text(
                       'R\$${cart.totalAmount.toStringAsFixed(2)}',
                       style: TextStyle(
@@ -56,7 +56,7 @@ class CartPage extends StatelessWidget {
               itemCount: items.length,
               itemBuilder: (ctx, i) => CartItemWidget(items[i]),
             ),
-          ),
+          )
         ],
       ),
     );
@@ -72,7 +72,7 @@ class CartButton extends StatefulWidget {
   final Cart cart;
 
   @override
-  _CartButtonState createState() => _CartButtonState();
+  State<CartButton> createState() => _CartButtonState();
 }
 
 class _CartButtonState extends State<CartButton> {
@@ -86,14 +86,13 @@ class _CartButtonState extends State<CartButton> {
             child: Text('COMPRAR'),
             style: TextButton.styleFrom(
               textStyle: TextStyle(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
             onPressed: widget.cart.itemsCount == 0
                 ? null
                 : () async {
                     setState(() => _isLoading = true);
-
                     await Provider.of<OrderList>(
                       context,
                       listen: false,

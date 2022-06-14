@@ -33,7 +33,7 @@ class Auth with ChangeNotifier {
   Future<void> _authenticate(
       String email, String password, String urlFragment) async {
     final url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:$urlFragment?key=AIzaSyBhR8yy3e5r8IavvQ8vYUYVqYl8Ia2nb54';
+        'https://identitytoolkit.googleapis.com/v1/accounts:$urlFragment?key=AIzaSyDUvvnVfcnIUdTMSvYdk0mX4W2M5dfUZQo';
     final response = await http.post(
       Uri.parse(url),
       body: jsonEncode({
@@ -82,6 +82,7 @@ class Auth with ChangeNotifier {
     if (isAuth) return;
 
     final userData = await Store.getMap('userData');
+
     if (userData.isEmpty) return;
 
     final expiryDate = DateTime.parse(userData['expiryDate']);
